@@ -77,11 +77,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="188"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AYh-IF-Ux5">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AYh-IF-Ux5">
                                                     <rect key="frame" x="15" y="11" width="83" height="66"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="83" id="1PQ-bp-rvP"/>
+                                                        <constraint firstAttribute="height" constant="66" id="bwa-gl-Jz6"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ML-cR-jeJ">
-                                                    <rect key="frame" x="112" y="11" width="77" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ML-cR-jeJ">
+                                                    <rect key="frame" x="113" y="16" width="47" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -131,7 +135,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="AYh-IF-Ux5" secondAttribute="bottom" constant="100" id="7u8-bR-xf2"/>
+                                                <constraint firstItem="2ML-cR-jeJ" firstAttribute="top" secondItem="3nl-oT-zK5" secondAttribute="topMargin" constant="5" id="KPe-sm-ps9"/>
                                                 <constraint firstItem="AYh-IF-Ux5" firstAttribute="leading" secondItem="3nl-oT-zK5" secondAttribute="leadingMargin" id="ViK-eF-g5x"/>
+                                                <constraint firstItem="2ML-cR-jeJ" firstAttribute="leading" secondItem="AYh-IF-Ux5" secondAttribute="trailing" constant="15" id="ZKr-AQ-TZR"/>
                                                 <constraint firstItem="AYh-IF-Ux5" firstAttribute="top" secondItem="3nl-oT-zK5" secondAttribute="topMargin" id="bU5-Zc-VNL"/>
                                                 <constraint firstItem="2ML-cR-jeJ" firstAttribute="leading" secondItem="AYh-IF-Ux5" secondAttribute="trailing" constant="15" id="gBz-py-Uvf"/>
                                             </constraints>
