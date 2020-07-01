@@ -62,7 +62,7 @@
     self.tweet = tweet;
     
     self.nameLabel.text = self.tweet.user.name;
-    self.screenNameLabel.text = self.tweet.user.screenName;
+    self.screenNameLabel.text =  [NSString stringWithFormat:@"@%@",self.tweet.user.screenName];
     self.tweetLabel.text = self.tweet.text;
     self.dateLabel.text = self.tweet.createdAtString;
     self.favoriteLabel.text = [NSString stringWithFormat: @"%d", self.tweet.favoriteCount];
