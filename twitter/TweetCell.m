@@ -7,7 +7,8 @@
 //
 
 #import "TweetCell.h"
-
+#import "UIImageView+AFNetworking.h"
+#import "APIManager.h"
 @implementation TweetCell
 
 
@@ -23,4 +24,57 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)didTapRetweet:(id)sender {
+    
+     [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+           if(error){
+                NSLog(@"Error retweet tweet: %@", error.localizedDescription);
+               
+           }
+           else{
+               self.tweet.retweeted = YES;
+               self.tweet.retweetCount += 1;
+               [self refreshData:self.tweet];
+               NSLog(@"Successfully retweet the following Tweet: %@", tweet.text);
+               
+           }
+       }];
+}
+
+- (IBAction)didTapFavorite:(id)sender {
+    
+    [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+        if(error){
+             NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+            
+        }
+        else{
+            self.tweet.favorited = YES;
+            self.tweet.favoriteCount += 1;
+            [self refreshData:self.tweet];
+            NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+        }
+    }];
+    
+}
+- (void) refreshData:(Tweet *) tweet
+{
+    self.tweet = tweet;
+    
+    self.nameLabel.text = self.tweet.user.name;
+    self.screenNameLabel.text = self.tweet.user.screenName;
+    self.tweetLabel.text = self.tweet.text;
+    self.dateLabel.text = self.tweet.createdAtString;
+    self.favoriteLabel.text = [NSString stringWithFormat: @"%d", self.tweet.favoriteCount];
+    self.retweetLabel.text = [NSString stringWithFormat: @"%d", self.tweet.retweetCount];
+    
+    [self.favoritedButton setSelected:self.tweet.favorited];
+    [self.retweetButton setSelected:self.tweet.retweeted];
+    
+    NSString *profilePictureURL = self.tweet.user.profilePicture;
+    NSURL *profilePicture = [NSURL URLWithString:profilePictureURL];
+    
+    self.profilePicture.image = nil;
+    [self.profilePicture setImageWithURL:profilePicture];
+}
 @end

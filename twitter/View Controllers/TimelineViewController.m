@@ -11,6 +11,9 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
+
 
 @interface TimelineViewController () <UITableViewDataSource,UITableViewDelegate,ComposeViewControllerDelegate>
 
@@ -25,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchHomeTimeline) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -37,6 +41,16 @@
     
     
 }
+- (IBAction)onTapLogout:(id)sender {
+   
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    appDelegate.window.rootViewController = loginViewController;
+    [[APIManager shared] logout];
+}
+
 - (void)fetchHomeTimeline
 {
     // Get timeline
@@ -45,10 +59,10 @@
             self.tweet = (NSMutableArray *)tweets;
             [self.tableView reloadData];
             
-            for (Tweet *tweet in tweets) {
-                NSString *text = tweet.user.name;
-                NSLog(@"%@", text);
-            }
+//            for (Tweet *tweet in tweets) {
+//                NSString *text = tweet.user.name;
+//                NSLog(@"%@", text);
+//            }
             NSLog(@"😎😎😎 Successfully loaded home timeline");
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
@@ -80,19 +94,10 @@
     
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     
-    Tweet *tweetDictionary = self.tweet[indexPath.row];
+    Tweet *tweetObject = self.tweet[indexPath.row];
     
-    cell.tweet = tweetDictionary;
-    cell.nameLabel.text = cell.tweet.user.name;
-    cell.screenNameLabel.text = cell.tweet.user.screenName;
-    cell.tweetLabel.text = tweetDictionary.text;
-    cell.dateLabel.text = tweetDictionary.createdAtString;
-    cell.favoriteLabel.text = [NSString stringWithFormat: @"%d", tweetDictionary.favoriteCount];
-    cell.retweetLabel.text = [NSString stringWithFormat: @"%d", tweetDictionary.retweetCount];
-    NSString *profilePictureURL = tweetDictionary.user.profilePicture;
-    
-    NSURL *profilePicture = [NSURL URLWithString:profilePictureURL];
-    [cell.profilePicture setImageWithURL:profilePicture];
+    [cell refreshData:tweetObject];
+
     return cell;
 }
 
