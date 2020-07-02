@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *idStr;
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) NSString *createdAtString;
+@property (nonatomic, strong) NSString *longDate;
 @property (nonatomic) int favoriteCount;
 @property (nonatomic) int retweetCount;
 @property (nonatomic) BOOL favorited;

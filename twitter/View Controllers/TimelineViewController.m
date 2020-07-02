@@ -13,13 +13,14 @@
 #import "ComposeViewController.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-
+#import "DetailViewController.h"
 
 @interface TimelineViewController () <UITableViewDataSource,UITableViewDelegate,ComposeViewControllerDelegate>
 
 @property (nonatomic,strong) NSMutableArray *tweet;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) UIRefreshControl *refreshControl;
+@property (nonatomic) BOOL didTapped;
 
 @end
 
@@ -40,6 +41,9 @@
     [self fetchHomeTimeline];
     
     
+}
+- (IBAction)onTapTweet:(id)sender {
+    self.didTapped =YES;
 }
 - (IBAction)onTapLogout:(id)sender {
    
@@ -83,11 +87,21 @@
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController *)navigationController.topViewController;
-    composeController.delegate = self;
-    
-    
+    UITableViewCell *tappedCell = sender;
+   
+    if([sender isKindOfClass:[TweetCell class]]){
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        Tweet *tweet = self.tweet[indexPath.row];
+        DetailViewController *detailViewController = [segue destinationViewController];
+        detailViewController.tweet = tweet;
+    }
+    if([sender isKindOfClass:[UIBarButtonItem class]]){
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController *)navigationController.topViewController;
+        composeController.delegate = self;
+    }
+   
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {

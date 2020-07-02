@@ -9,6 +9,9 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "APIManager.h"
+#import "NSDate+DateTools.h"
+
+
 @implementation TweetCell
 
 
@@ -26,7 +29,7 @@
 
 - (IBAction)didTapRetweet:(id)sender {
     
-     [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+     [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
            if(error){
                 NSLog(@"Error retweet tweet: %@", error.localizedDescription);
                
@@ -60,7 +63,7 @@
 - (void) refreshData:(Tweet *) tweet
 {
     self.tweet = tweet;
-    
+        
     self.nameLabel.text = self.tweet.user.name;
     self.screenNameLabel.text =  [NSString stringWithFormat:@"@%@",self.tweet.user.screenName];
     self.tweetLabel.text = self.tweet.text;
