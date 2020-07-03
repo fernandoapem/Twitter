@@ -22,6 +22,7 @@
 		ED0A0EE424AA8F760078997E /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0A0EE324AA8F760078997E /* TweetCell.m */; };
 		ED0A0EE724ABDF030078997E /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0A0EE624ABDF030078997E /* ComposeViewController.m */; };
 		ED7B4DD824AD7E49008190B0 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7B4DD724AD7E49008190B0 /* DetailViewController.m */; };
+		EDD9A49D24AE8C1400D50D7F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD9A49C24AE8C1400D50D7F /* ProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,8 @@
 		ED0A0EE624ABDF030078997E /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		ED7B4DD624AD7E49008190B0 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		ED7B4DD724AD7E49008190B0 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		EDD9A49B24AE8C1400D50D7F /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		EDD9A49C24AE8C1400D50D7F /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,8 @@
 				6AD2790820BCC04D0085BC29 /* TimelineViewController.m */,
 				ED7B4DD624AD7E49008190B0 /* DetailViewController.h */,
 				ED7B4DD724AD7E49008190B0 /* DetailViewController.m */,
+				EDD9A49B24AE8C1400D50D7F /* ProfileViewController.h */,
+				EDD9A49C24AE8C1400D50D7F /* ProfileViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 				ED7B4DD824AD7E49008190B0 /* DetailViewController.m in Sources */,
 				6AD278DA20BC4B950085BC29 /* AppDelegate.m in Sources */,
 				6AD278F620BCB68B0085BC29 /* APIManager.m in Sources */,
+				EDD9A49D24AE8C1400D50D7F /* ProfileViewController.m in Sources */,
 				6AD2790920BCC04D0085BC29 /* TimelineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

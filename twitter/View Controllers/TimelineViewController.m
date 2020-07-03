@@ -38,10 +38,13 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    [self fetchHomeTimeline];
-    
     
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self fetchHomeTimeline];
+}
+
 - (IBAction)onTapTweet:(id)sender {
     self.didTapped =YES;
 }

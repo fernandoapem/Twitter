@@ -47,6 +47,7 @@
 
 - (IBAction)didTapFavorite:(id)sender {
 
+    if(self.tweet.favorited==NO){
     [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
         if(error){
              NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
@@ -59,22 +60,58 @@
             NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
         }
     }];
+    }
+    else
+    {
+        [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                 NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
+                
+            }
+            else{
+                self.tweet.favorited = NO;
+                self.tweet.favoriteCount -= 1;
+                [self refreshData:self.tweet];
+                NSLog(@"Successfully unfavorited the following Tweet: %@", tweet.text);
+            }
+        }];
+        
+    }
 }
 
 - (IBAction)didTapRetweet:(id)sender {
-    [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
-          if(error){
-               NSLog(@"Error retweet tweet: %@", error.localizedDescription);
-              
-          }
-          else{
-              self.tweet.retweeted = YES;
-              self.tweet.retweetCount += 1;
-              [self refreshData:self.tweet];
-              NSLog(@"Successfully retweet the following Tweet: %@", tweet.text);
-              
-          }
-      }];
+        if(self.tweet.retweeted==NO){
+     [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+           if(error){
+                NSLog(@"Error retweet tweet: %@", error.localizedDescription);
+               
+           }
+           else{
+               self.tweet.retweeted = YES;
+               self.tweet.retweetCount += 1;
+               [self refreshData:self.tweet];
+               NSLog(@"Successfully retweet the following Tweet: %@", tweet.text);
+               
+           }
+       }];
+    }
+    else
+    {
+        [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+              if(error){
+                   NSLog(@"Error unretweet tweet: %@", error.localizedDescription);
+                  
+              }
+              else{
+                  self.tweet.retweeted = NO;
+                  self.tweet.retweetCount -= 1;
+                  [self refreshData:self.tweet];
+                  NSLog(@"Successfully unretweet the following Tweet: %@", tweet.text);
+                  
+              }
+          }];
+        
+    }
     
 }
 - (void) refreshData:(Tweet *) tweet
