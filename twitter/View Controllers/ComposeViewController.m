@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 - (IBAction)cancelButton:(id)sender;
 - (IBAction)tweetButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *countLabel;
 
 @end
 
@@ -31,9 +32,9 @@
 
     // Construct what the new text would be if we allowed the user's latest edit
     NSString *newText = [self.textView.text stringByReplacingCharactersInRange:range withString:text];
-
+   
     // TODO: Update Character Count Label
-
+    self.countLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)newText.length];
     // The new text should be allowed? True/False
     return newText.length < characterLimit;
 }

@@ -51,7 +51,7 @@ static NSString * const consumerSecret = // Enter your consumer secret here
     
 
     // Create a GET Request
-    [self GET:@"1.1/statuses/home_timeline.json"
+    [self GET:@"1.1/statuses/home_timeline.json?tweet_mode=extended"
         parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
             // Success
             NSMutableArray *tweets  = [Tweet tweetsWithArray:tweetDictionaries];
